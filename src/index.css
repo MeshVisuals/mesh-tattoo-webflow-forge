@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -46,11 +46,11 @@
 
   body {
     @apply bg-black text-white overflow-x-hidden font-sans;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
 
   h1, h2, h3, h4, h5 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
 }
 
@@ -96,4 +96,62 @@ html::-webkit-scrollbar {
   html {
     scroll-behavior: smooth;
   }
+}
+
+/* Rain Animation */
+.rain-drop {
+  position: absolute;
+  background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.6));
+  width: 1px;
+}
+
+/* Enhanced Parallax */
+@keyframes float-up {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.float-up {
+  animation: float-up 1s ease-out forwards;
+}
+
+/* New futuristic button style */
+.btn-futuristic {
+  @apply relative overflow-hidden bg-transparent border border-mesh-orange text-white px-6 py-3 rounded-md;
+}
+
+.btn-futuristic::before {
+  content: '';
+  @apply absolute inset-0 bg-mesh-orange/20 transform scale-x-0 origin-left transition-transform duration-300;
+}
+
+.btn-futuristic:hover::before {
+  @apply scale-x-100;
+}
+
+/* Carousel enhancement */
+.embla {
+  overflow: hidden;
+}
+
+.embla__container {
+  display: flex;
+}
+
+.embla__slide {
+  flex: 0 0 33.33%;
+  min-width: 0;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.embla__slide--current {
+  transform: scale(1.1);
+  z-index: 10;
 }

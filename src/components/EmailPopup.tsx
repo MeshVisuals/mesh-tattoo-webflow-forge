@@ -55,17 +55,17 @@ const EmailPopup: React.FC = () => {
         </button>
         
         <div className="text-center">
-          <h3 className="text-xl font-bold text-mesh-orange mb-2">Want a FREE Tattoo?</h3>
+          <h3 className="text-xl font-bold text-mesh-orange mb-4 font-sans">Want a FREE Tattoo?</h3>
           <p className="text-gray-300 mb-4">
-            Follow us on social media and subscribe to our email list to be eligible for free tattoo opportunities!
+            Follow us on social media and enter your email to be eligible for free tattoo opportunities!
           </p>
           
-          <div className="flex justify-center space-x-4 mb-4">
+          <div className="flex justify-center space-x-4 mb-5">
             <a 
               href="https://www.instagram.com/meshtattoo_bcn/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="bg-black border border-mesh-orange text-white p-3 rounded-full hover:bg-mesh-orange/10 transition-colors"
+              className="bg-black border border-mesh-orange text-white p-3 rounded-md hover:bg-mesh-orange/10 transition-colors"
             >
               <Instagram size={24} />
             </a>
@@ -73,7 +73,7 @@ const EmailPopup: React.FC = () => {
               href="https://www.tiktok.com/@meshtattoo" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="bg-black border border-mesh-orange text-white p-3 rounded-full hover:bg-mesh-orange/10 transition-colors"
+              className="bg-black border border-mesh-orange text-white p-3 rounded-md hover:bg-mesh-orange/10 transition-colors"
             >
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 
@@ -105,7 +105,7 @@ const EmailPopup: React.FC = () => {
               />
               <button 
                 type="submit" 
-                className="btn-primary"
+                className="bg-black text-white border border-mesh-orange py-3 rounded-md hover:bg-black/80 transition-colors font-sans tracking-wide"
               >
                 Get Free Tattoo Info
               </button>

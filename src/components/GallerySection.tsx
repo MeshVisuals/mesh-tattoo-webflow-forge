@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Carousel,
   CarouselContent,
@@ -7,6 +7,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { cn } from "@/lib/utils";
+import useEmblaCarousel from 'embla-carousel-react';
 
 const galleryItems = [
   {
@@ -88,6 +90,20 @@ const galleryItems = [
 
 const GallerySection: React.FC = () => {
   const [expandedImage, setExpandedImage] = useState<string | null>(null);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    loop: true,
+    align: 'center',
+    skipSnaps: false
+  });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  useEffect(() => {
+    if (emblaApi) {
+      emblaApi.on('select', () => {
+        setSelectedIndex(emblaApi.selectedScrollSnap());
+      });
+    }
+  }, [emblaApi]);
 
   const openImage = (imageUrl: string) => {
     setExpandedImage(imageUrl);
@@ -100,40 +116,50 @@ const GallerySection: React.FC = () => {
   return (
     <section id="gallery" className="section-container bg-black">
       <div className="container mx-auto">
-        <h2 className="section-title">Gallery</h2>
+        <h2 className="section-title font-sans">Gallery</h2>
         
-        <div className="mt-12">
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full"
-          >
-            <CarouselContent>
-              {galleryItems.map((item) => (
-                <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3 pl-0">
-                  <div className="p-1">
-                    <div 
-                      className="overflow-hidden rounded-lg cursor-pointer relative group"
-                      onClick={() => openImage(item.image)}
-                    >
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className="w-full aspect-square object-cover rounded-lg transform transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <p className="text-white text-lg font-semibold">{item.title}</p>
-                      </div>
+        <div className="mt-12 overflow-hidden">
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex">
+              {galleryItems.map((item, index) => (
+                <div 
+                  key={item.id} 
+                  className={cn(
+                    "flex-[0_0_80%] sm:flex-[0_0_40%] md:flex-[0_0_33.333%] min-w-0 px-2 transition-all duration-300",
+                    selectedIndex === index ? "scale-100" : "scale-75 opacity-60"
+                  )}
+                >
+                  <div 
+                    className="overflow-hidden rounded-lg cursor-pointer relative group h-full"
+                    onClick={() => openImage(item.image)}
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full aspect-square object-cover rounded-lg transform transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <p className="text-white text-lg font-semibold">{item.title}</p>
                     </div>
                   </div>
-                </CarouselItem>
+                </div>
               ))}
-            </CarouselContent>
-            <CarouselPrevious className="text-white border-mesh-orange hover:bg-mesh-orange" />
-            <CarouselNext className="text-white border-mesh-orange hover:bg-mesh-orange" />
-          </Carousel>
+            </div>
+          </div>
+          <div className="flex justify-center gap-4 mt-4">
+            <button 
+              onClick={() => emblaApi?.scrollPrev()} 
+              className="text-white border border-mesh-orange hover:bg-mesh-orange px-4 py-2 rounded-full"
+            >
+              &lt;
+            </button>
+            <button 
+              onClick={() => emblaApi?.scrollNext()} 
+              className="text-white border border-mesh-orange hover:bg-mesh-orange px-4 py-2 rounded-full"
+            >
+              &gt;
+            </button>
+          </div>
         </div>
       </div>
 
