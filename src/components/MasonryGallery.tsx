@@ -1,3 +1,4 @@
+
 import React, { useRef, useEffect, useState } from 'react';
 
 const galleryItems = [
@@ -133,8 +134,11 @@ const galleryItems = [
 const MasonryGallery: React.FC = () => {
   const rowRefs = useRef<HTMLDivElement[]>([]);
   const [expandedImage, setExpandedImage] = useState<string | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    setIsVisible(true);
+    
     // Function to animate the rows
     const animateRows = () => {
       const rows = rowRefs.current;
@@ -175,11 +179,27 @@ const MasonryGallery: React.FC = () => {
   
   const openImage = (imageUrl: string) => {
     setExpandedImage(imageUrl);
+    // Prevent body scrolling when modal is open
+    document.body.style.overflow = 'hidden';
   };
 
   const closeImage = () => {
     setExpandedImage(null);
+    // Re-enable body scrolling
+    document.body.style.overflow = '';
   };
+
+  // Handle ESC key press to close modal
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && expandedImage) {
+        closeImage();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [expandedImage]);
 
   return (
     <section id="gallery" className="section-container bg-black overflow-hidden">
@@ -187,7 +207,7 @@ const MasonryGallery: React.FC = () => {
         <h2 className="section-title font-sans">Gallery</h2>
       </div>
       
-      <div className="w-full overflow-hidden">
+      <div className={`w-full overflow-hidden transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
         {[1, 2, 3].map((rowNum) => (
           <div
             key={rowNum}
@@ -211,6 +231,7 @@ const MasonryGallery: React.FC = () => {
                   <img
                     src={item.image}
                     alt={item.title}
+                    loading="lazy"
                     className="w-full h-full object-cover rounded-lg transform transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -230,6 +251,7 @@ const MasonryGallery: React.FC = () => {
                   <img
                     src={item.image}
                     alt={item.title}
+                    loading="lazy"
                     className="w-full h-full object-cover rounded-lg transform transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -241,22 +263,30 @@ const MasonryGallery: React.FC = () => {
         ))}
       </div>
 
-      {/* Full Screen Image Modal */}
+      {/* Full Screen Image Modal with improved accessibility */}
       {expandedImage && (
         <div 
           className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
           onClick={closeImage}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-title"
         >
           <div className="relative max-w-4xl max-h-full">
             <button 
               className="absolute top-4 right-4 text-white bg-mesh-orange p-2 rounded-full"
-              onClick={closeImage}
+              onClick={(e) => {
+                e.stopPropagation();
+                closeImage();
+              }}
+              aria-label="Close image"
             >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
             <img 
+              id="modal-title"
               src={expandedImage} 
               alt="Expanded gallery image" 
               className="max-w-full max-h-[80vh] object-contain"
