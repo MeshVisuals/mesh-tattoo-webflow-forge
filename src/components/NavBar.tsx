@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Instagram, Tiktok } from 'lucide-react';
+import { Instagram } from 'lucide-react';
 
 const NavBar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -47,7 +47,21 @@ const NavBar: React.FC = () => {
             <Instagram size={20} />
           </a>
           <a href="https://www.tiktok.com/@meshtattoo" target="_blank" rel="noopener noreferrer" className="text-white hover:text-mesh-orange transition-colors">
-            <Tiktok size={20} />
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              width="20" 
+              height="20" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="2" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            >
+              <path d="M9 12a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"></path>
+              <path d="M15 8h.01"></path>
+              <path d="M11 16c-3 0-6.5-2.5-6.5-6.5C4.5 6 8 4 8 4h8c0 4-3 6-3 6"></path>
+            </svg>
           </a>
           <a href="https://beacons.ai/meshtattoo" target="_blank" rel="noopener noreferrer" className="text-white hover:text-mesh-orange transition-colors">
             <span className="font-bold">B</span>
@@ -81,7 +95,21 @@ const NavBar: React.FC = () => {
                 <Instagram size={20} />
               </a>
               <a href="https://www.tiktok.com/@meshtattoo" target="_blank" rel="noopener noreferrer" className="text-white hover:text-mesh-orange transition-colors">
-                <Tiktok size={20} />
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  width="20" 
+                  height="20" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                >
+                  <path d="M9 12a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"></path>
+                  <path d="M15 8h.01"></path>
+                  <path d="M11 16c-3 0-6.5-2.5-6.5-6.5C4.5 6 8 4 8 4h8c0 4-3 6-3 6"></path>
+                </svg>
               </a>
               <a href="https://beacons.ai/meshtattoo" target="_blank" rel="noopener noreferrer" className="text-white hover:text-mesh-orange transition-colors">
                 <span className="font-bold">B</span>
