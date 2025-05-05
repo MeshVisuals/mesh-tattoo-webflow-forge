@@ -1,7 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { cn } from "@/lib/utils";
-import RainAnimation from '@/components/RainAnimation';
 
 const HeroSection: React.FC = () => {
   const [visible, setVisible] = useState(false);
@@ -20,13 +19,14 @@ const HeroSection: React.FC = () => {
 
   return (
     <section id="home" className="flex items-center justify-center min-h-screen bg-black relative overflow-hidden">
-      {/* Rain animation background */}
-      <div className={cn(
-        "absolute inset-0 transition-opacity duration-1000 ease-in-out",
-        scrolled ? "opacity-30" : "opacity-0"
-      )}>
-        <RainAnimation />
-      </div>
+      {/* Background parallax image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-fixed"
+        style={{ 
+          backgroundImage: `url('/lovable-uploads/5661558a-86b4-4378-8f1f-d3684e77fa74.png')`,
+          opacity: scrolled ? 0.5 : 0
+        }}
+      ></div>
       
       <div className={cn(
         "transition-opacity duration-2000 ease-in-out z-10",
@@ -43,8 +43,8 @@ const HeroSection: React.FC = () => {
         </div>
       </div>
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-4 h-6 border-2 border-white rounded-full flex justify-center items-start p-0.5">
-          <div className="w-0.5 h-1.5 bg-white rounded-full animate-pulse"></div>
+        <div className="w-2 h-3 border-2 border-white rounded-full flex justify-center items-start p-0.5">
+          <div className="w-0.5 h-1 bg-white rounded-full animate-pulse"></div>
         </div>
         <p className="text-white text-center mt-2 text-xs">Scroll Down</p>
       </div>

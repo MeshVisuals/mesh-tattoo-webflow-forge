@@ -86,25 +86,6 @@ html::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Edge */
 }
 
-/* Parallax effect */
-.parallax {
-  will-change: transform;
-}
-
-/* Smooth scroll for supported browsers */
-@supports (scroll-behavior: smooth) {
-  html {
-    scroll-behavior: smooth;
-  }
-}
-
-/* Rain Animation */
-.rain-drop {
-  position: absolute;
-  background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.6));
-  width: 1px;
-}
-
 /* Enhanced Parallax */
 @keyframes float-up {
   0% {
@@ -154,4 +135,56 @@ html::-webkit-scrollbar {
 .embla__slide--current {
   transform: scale(1.1);
   z-index: 10;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 2s ease-out forwards;
+}
+
+/* Parallax styles */
+.parallax-bg {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  will-change: transform;
+}
+
+/* Calendly integration */
+.calendly-inline-widget {
+  min-width: 320px;
+  height: 700px;
+}
+
+/* Improved masonry gallery */
+.masonry-row {
+  display: flex;
+  will-change: transform;
+}
+
+.masonry-item {
+  flex: 0 0 auto;
+  transition: all 0.3s ease;
+}
+
+.masonry-item:hover {
+  z-index: 10;
+  transform: scale(1.05);
+}
+
+/* Enhanced transitions */
+.transition-all {
+  transition-duration: 300ms;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }

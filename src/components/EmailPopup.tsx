@@ -56,9 +56,6 @@ const EmailPopup: React.FC = () => {
         
         <div className="text-center">
           <h3 className="text-xl font-bold text-mesh-orange mb-4 font-sans">Want a FREE Tattoo?</h3>
-          <p className="text-gray-300 mb-4">
-            Follow us on social media and enter your email to be eligible for free tattoo opportunities!
-          </p>
           
           <div className="flex justify-center space-x-4 mb-5">
             <a 
@@ -92,6 +89,10 @@ const EmailPopup: React.FC = () => {
               </svg>
             </a>
           </div>
+          
+          <p className="text-gray-300 mb-4">
+            Follow us on social media and enter your email below to be eligible for free tattoo opportunities!
+          </p>
           
           <form onSubmit={handleSubmit} className="mt-4">
             <div className="flex flex-col space-y-3">
