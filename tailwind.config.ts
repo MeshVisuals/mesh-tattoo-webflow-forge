@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,11 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				mesh: {
+					orange: '#F97316',
+					black: '#000000',
+					white: '#FFFFFF',
 				}
 			},
 			borderRadius: {
@@ -84,11 +90,44 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					'0%': {
+						opacity: '0',
+					},
+					'100%': {
+						opacity: '1',
+					}
+				},
+				'snake-move': {
+					'0%': {
+						transform: 'rotate(0deg)'
+					},
+					'10%': {
+						transform: 'rotate(-5deg)'
+					},
+					'20%': {
+						transform: 'rotate(5deg)'
+					},
+					'30%': {
+						transform: 'rotate(-3deg)'
+					},
+					'40%': {
+						transform: 'rotate(3deg)'
+					},
+					'50%': {
+						transform: 'rotate(0deg)'
+					},
+					'100%': {
+						transform: 'rotate(0deg)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 1.5s ease-out',
+				'snake-move': 'snake-move 8s ease-in-out infinite'
 			}
 		}
 	},
