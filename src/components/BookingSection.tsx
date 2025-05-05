@@ -1,47 +1,37 @@
 
-import React, { useState } from 'react';
+import { useState } from "react";
 import { Calendar } from "@/components/ui/calendar";
-import { format } from "date-fns";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Calendar as CalendarIcon } from "lucide-react";
 import { toast } from "sonner";
 
-const BookingSection: React.FC = () => {
+const BookingSection = () => {
   const [date, setDate] = useState<Date | undefined>(undefined);
   const [time, setTime] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
   const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
   const [description, setDescription] = useState<string>("");
 
   const availableTimes = [
-    "10:00", "11:00", "12:00", "13:00", 
-    "15:00", "16:00", "17:00", "18:00"
+    "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", 
+    "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM"
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Here you would typically send the data to a server
-    if (!date || !time || !email || !name || !phone || !description) {
-      toast.error("Please fill out all fields");
+    // Form validation
+    if (!date || !time || !name || !email || !phone || !description) {
+      toast.error("Please fill in all fields");
       return;
     }
-
-    // Show success message
-    toast.success("Booking request sent! We'll confirm via email shortly.");
+    
+    toast.success("Booking request sent! We'll email you shortly to confirm.");
     
     // Reset form
     setDate(undefined);
     setTime("");
-    setEmail("");
     setName("");
+    setEmail("");
     setPhone("");
     setDescription("");
   };
@@ -49,121 +39,100 @@ const BookingSection: React.FC = () => {
   return (
     <section id="booking" className="section-container bg-black">
       <div className="container mx-auto">
-        <h2 className="section-title">Book an Appointment</h2>
+        <h2 className="section-title">Book a Session</h2>
         
-        <div className="max-w-3xl mx-auto mt-12 bg-muted p-6 md:p-8 rounded-lg">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <label className="block text-sm font-medium">Select Date</label>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant={"outline"}
-                      className={cn(
-                        "w-full justify-start text-left font-normal border-muted bg-black/30",
-                        !date && "text-muted-foreground"
-                      )}
-                    >
-                      <CalendarIcon className="mr-2 h-4 w-4" />
-                      {date ? format(date, "PPP") : <span>Pick a date</span>}
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0 bg-black border border-mesh-orange/30" align="start">
-                    <Calendar
-                      mode="single"
-                      selected={date}
-                      onSelect={setDate}
-                      initialFocus
-                      disabled={(date) => {
-                        // Disable past dates and Sundays (assuming studio is closed)
-                        const today = new Date();
-                        today.setHours(0, 0, 0, 0);
-                        return date < today || date.getDay() === 0;
-                      }}
-                      className="border-mesh-orange pointer-events-auto"
-                    />
-                  </PopoverContent>
-                </Popover>
-              </div>
-
-              <div className="space-y-2">
-                <label className="block text-sm font-medium">Select Time</label>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
+          <div className="bg-muted/20 p-6 rounded-lg border border-muted">
+            <h3 className="text-xl font-semibold mb-4">Select Your Date</h3>
+            <Calendar
+              mode="single"
+              selected={date}
+              onSelect={setDate}
+              className="bg-black border border-muted rounded-lg p-4"
+            />
+          </div>
+          
+          <div className="bg-muted/20 p-6 rounded-lg border border-muted">
+            <h3 className="text-xl font-semibold mb-4">Book Your Appointment</h3>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Time Selection */}
+              <div>
+                <label className="block text-gray-300 mb-2">Preferred Time</label>
                 <select 
                   value={time} 
-                  onChange={(e) => setTime(e.target.value)} 
+                  onChange={(e) => setTime(e.target.value)}
                   className="input-field"
                   required
                 >
                   <option value="">Select a time</option>
-                  {availableTimes.map((t) => (
-                    <option key={t} value={t}>{t}</option>
+                  {availableTimes.map((timeSlot) => (
+                    <option key={timeSlot} value={timeSlot}>
+                      {timeSlot}
+                    </option>
                   ))}
                 </select>
               </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <label className="block text-sm font-medium">Your Name</label>
+              
+              {/* Contact Information */}
+              <div>
+                <label className="block text-gray-300 mb-2">Your Name</label>
                 <input
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
+                  placeholder="Enter your full name"
                   className="input-field"
-                  placeholder="John Doe"
                   required
                 />
               </div>
-
-              <div className="space-y-2">
-                <label className="block text-sm font-medium">Email Address</label>
+              
+              <div>
+                <label className="block text-gray-300 mb-2">Email Address</label>
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
                   className="input-field"
-                  placeholder="your@email.com"
                   required
                 />
               </div>
-            </div>
-
-            <div className="space-y-2">
-              <label className="block text-sm font-medium">Phone Number</label>
-              <input
-                type="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                className="input-field"
-                placeholder="+1 (123) 456-7890"
-                required
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label className="block text-sm font-medium">Tattoo Description</label>
-              <textarea
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                className="input-field min-h-[120px]"
-                placeholder="Describe your tattoo idea, size, placement, etc."
-                required
-              />
-            </div>
-
-            <div className="pt-4">
-              <Button 
+              
+              <div>
+                <label className="block text-gray-300 mb-2">Phone Number</label>
+                <input
+                  type="tel"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  placeholder="Enter your phone number"
+                  className="input-field"
+                  required
+                />
+              </div>
+              
+              <div>
+                <label className="block text-gray-300 mb-2">Tattoo Description</label>
+                <textarea
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  placeholder="Describe your tattoo idea, size, and placement"
+                  className="input-field h-32"
+                  required
+                />
+              </div>
+              
+              <button 
                 type="submit" 
-                className="w-full py-3 bg-mesh-orange hover:bg-opacity-80 text-white"
+                className="btn-primary w-full mt-6"
               >
                 Request Booking
-              </Button>
-              <p className="text-sm text-gray-400 mt-3 text-center">
-                After submission, you'll receive a confirmation email. Your booking will be confirmed based on availability.
+              </button>
+              
+              <p className="text-sm text-gray-400 text-center">
+                You'll receive an email confirming your request and we'll get back to you shortly to confirm your appointment.
               </p>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </section>

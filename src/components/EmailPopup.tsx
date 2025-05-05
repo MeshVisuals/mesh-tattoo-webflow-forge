@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { X } from 'lucide-react';
+import { Instagram, X } from 'lucide-react';
 import { toast } from "sonner";
 
 const EmailPopup: React.FC = () => {
@@ -57,8 +57,41 @@ const EmailPopup: React.FC = () => {
         <div className="text-center">
           <h3 className="text-xl font-bold text-mesh-orange mb-2">Want a FREE Tattoo?</h3>
           <p className="text-gray-300 mb-4">
-            Join our exclusive list to receive information about free tattoo opportunities and special offers.
+            Follow us on social media and subscribe to our email list to be eligible for free tattoo opportunities!
           </p>
+          
+          <div className="flex justify-center space-x-4 mb-4">
+            <a 
+              href="https://www.instagram.com/meshtattoo_bcn/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="bg-black border border-mesh-orange text-white p-3 rounded-full hover:bg-mesh-orange/10 transition-colors"
+            >
+              <Instagram size={24} />
+            </a>
+            <a 
+              href="https://www.tiktok.com/@meshtattoo" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="bg-black border border-mesh-orange text-white p-3 rounded-full hover:bg-mesh-orange/10 transition-colors"
+            >
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                width="24" 
+                height="24" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              >
+                <path d="M9 12a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"></path>
+                <path d="M15 8h.01"></path>
+                <path d="M11 16c-3 0-6.5-2.5-6.5-6.5C4.5 6 8 4 8 4h8c0 4-3 6-3 6"></path>
+              </svg>
+            </a>
+          </div>
           
           <form onSubmit={handleSubmit} className="mt-4">
             <div className="flex flex-col space-y-3">
@@ -72,7 +105,7 @@ const EmailPopup: React.FC = () => {
               />
               <button 
                 type="submit" 
-                className="w-full bg-mesh-orange hover:bg-opacity-80 transition-colors py-2 rounded-md font-medium text-white"
+                className="btn-primary"
               >
                 Get Free Tattoo Info
               </button>

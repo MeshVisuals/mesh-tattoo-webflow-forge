@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Instagram, Mail } from 'lucide-react';
 
@@ -52,7 +53,7 @@ const Footer: React.FC = () => {
                 </svg>
               </a>
               <a 
-                href="mailto:info@meshtattoo.com"
+                href="mailto:steph@meshtattoo.com"
                 className="bg-mesh-orange/10 p-2 rounded-full hover:bg-mesh-orange/20 transition-colors"
               >
                 <Mail size={18} className="text-mesh-orange" />
@@ -99,11 +100,6 @@ const Footer: React.FC = () => {
           <p className="text-gray-400 text-sm">
             © {currentYear} MeshTattoo. All rights reserved.
           </p>
-          <div className="mt-2">
-            <a href="https://beacons.ai/meshtattoo" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-mesh-orange transition-colors text-sm">
-              beacons.ai/meshtattoo
-            </a>
-          </div>
         </div>
       </div>
     </footer>

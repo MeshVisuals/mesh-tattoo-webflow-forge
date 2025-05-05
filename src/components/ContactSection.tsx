@@ -1,130 +1,152 @@
 
-import React, { useState } from 'react';
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
 import { toast } from "sonner";
-import { Mail, Phone, User } from "lucide-react";
+import { Instagram, Mail, MapPin, Phone } from "lucide-react";
 
-const ContactSection: React.FC = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+const ContactSection = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!name || !email || !message) {
-      toast.error("Please fill out all fields");
+      toast.error("Please fill in all required fields");
       return;
     }
     
-    // Show success message
-    toast.success("Message sent successfully! We'll get back to you soon.");
+    toast.success("Message sent! We'll get back to you soon.");
     
-    // Reset form
-    setName('');
-    setEmail('');
-    setMessage('');
+    // Reset form fields
+    setName("");
+    setEmail("");
+    setSubject("");
+    setMessage("");
   };
 
   return (
     <section id="contact" className="section-container bg-black">
       <div className="container mx-auto">
-        <h2 className="section-title">Get in Touch</h2>
+        <h2 className="section-title">Contact Us</h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-2xl font-semibold mb-4 text-mesh-orange">Contact Information</h3>
-              <p className="text-gray-300 mb-6">
-                Have questions or want to discuss your tattoo ideas? Get in touch with us using the contact form or through our social media channels.
-              </p>
-            </div>
-            
-            <div className="space-y-4">
-              <div className="flex items-start space-x-4">
-                <div className="bg-mesh-orange/10 p-3 rounded-full">
-                  <Mail className="h-6 w-6 text-mesh-orange" />
-                </div>
-                <div>
-                  <h4 className="text-lg font-medium">Email</h4>
-                  <p className="text-gray-400">info@meshtattoo.com</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-4">
-                <div className="bg-mesh-orange/10 p-3 rounded-full">
-                  <Phone className="h-6 w-6 text-mesh-orange" />
-                </div>
-                <div>
-                  <h4 className="text-lg font-medium">Phone</h4>
-                  <p className="text-gray-400">+34 123 456 789</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-4">
-                <div className="bg-mesh-orange/10 p-3 rounded-full">
-                  <User className="h-6 w-6 text-mesh-orange" />
-                </div>
-                <div>
-                  <h4 className="text-lg font-medium">Social Media</h4>
-                  <div className="flex space-x-4 mt-2">
-                    <a href="https://www.instagram.com/meshtattoo_bcn/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-mesh-orange transition-colors">Instagram</a>
-                    <a href="https://www.tiktok.com/@meshtattoo" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-mesh-orange transition-colors">TikTok</a>
-                    <a href="https://beacons.ai/meshtattoo" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-mesh-orange transition-colors">Beacons</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div className="bg-muted rounded-lg p-6">
-            <h3 className="text-xl font-semibold mb-6">Send a Message</h3>
-            <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12">
+          <div className="order-2 lg:order-1">
+            <form onSubmit={handleSubmit} className="bg-muted/20 p-6 border border-muted rounded-lg space-y-4">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-1">Name</label>
+                <label className="block text-gray-300 mb-2">Your Name *</label>
                 <input
-                  id="name"
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
+                  placeholder="Enter your name"
                   className="input-field"
-                  placeholder="Your Name"
                   required
                 />
               </div>
               
               <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-1">Email</label>
+                <label className="block text-gray-300 mb-2">Email Address *</label>
                 <input
-                  id="email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
                   className="input-field"
-                  placeholder="your@email.com"
                   required
                 />
               </div>
               
               <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-1">Message</label>
+                <label className="block text-gray-300 mb-2">Subject</label>
+                <input
+                  type="text"
+                  value={subject}
+                  onChange={(e) => setSubject(e.target.value)}
+                  placeholder="Enter subject"
+                  className="input-field"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-gray-300 mb-2">Message *</label>
                 <textarea
-                  id="message"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className="input-field min-h-[150px]"
-                  placeholder="How can we help you?"
+                  placeholder="Enter your message"
+                  className="input-field h-32"
                   required
                 />
               </div>
               
-              <Button 
+              <button 
                 type="submit" 
-                className="w-full bg-mesh-orange hover:bg-opacity-80 text-white mt-2"
+                className="btn-primary w-full mt-6"
               >
                 Send Message
-              </Button>
+              </button>
             </form>
+          </div>
+          
+          <div className="order-1 lg:order-2">
+            <div className="bg-muted/20 p-6 border border-muted rounded-lg h-full">
+              <h3 className="text-xl font-semibold mb-6">Get In Touch</h3>
+              
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="bg-mesh-orange/10 p-3 rounded-full">
+                    <Mail className="text-mesh-orange" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium mb-1">Email</h4>
+                    <a href="mailto:steph@meshtattoo.com" className="text-gray-300 hover:text-mesh-orange transition-colors">
+                      steph@meshtattoo.com
+                    </a>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-4">
+                  <div className="bg-mesh-orange/10 p-3 rounded-full">
+                    <Instagram className="text-mesh-orange" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium mb-1">Instagram</h4>
+                    <a href="https://www.instagram.com/meshtattoo_bcn/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-mesh-orange transition-colors">
+                      @meshtattoo_bcn
+                    </a>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-4">
+                  <div className="bg-mesh-orange/10 p-3 rounded-full">
+                    <MapPin className="text-mesh-orange" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium mb-1">Location</h4>
+                    <p className="text-gray-300">Barcelona, Spain</p>
+                  </div>
+                </div>
+                
+                <div className="pt-6 mt-6 border-t border-gray-800">
+                  <h4 className="font-medium mb-3">Studio Hours</h4>
+                  <ul className="space-y-2">
+                    <li className="flex justify-between">
+                      <span className="text-gray-400">Monday - Friday</span>
+                      <span>10:00 - 19:00</span>
+                    </li>
+                    <li className="flex justify-between">
+                      <span className="text-gray-400">Saturday</span>
+                      <span>10:00 - 16:00</span>
+                    </li>
+                    <li className="flex justify-between">
+                      <span className="text-gray-400">Sunday</span>
+                      <span>Closed</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -11,33 +11,78 @@ import {
 const galleryItems = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1611501156491-16389b0fa3d4?w=800&auto=format&fit=crop",
-    title: "Geometric Snake",
+    image: "/lovable-uploads/bf94c593-e7ef-43d2-9163-468e71b7e12f.png",
+    title: "Traditional Sailor Tattoo",
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1562962230-16e4623d36e7?w=800&auto=format&fit=crop",
-    title: "Blackwork Design",
+    image: "/lovable-uploads/b41d05ab-56ec-4dfb-aea7-e4bdf12eaa07.png",
+    title: "Artist Portfolio",
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1595229497217-24d68aacc1ff?w=800&auto=format&fit=crop",
-    title: "Ornamental Pattern",
+    image: "/lovable-uploads/10f2ab06-3a37-45b2-ae8a-aab1ba988d35.png",
+    title: "Tattoo Inks",
   },
   {
     id: 4,
-    image: "https://images.unsplash.com/photo-1593462544646-006076b31f41?w=800&auto=format&fit=crop",
-    title: "Minimalist Lines",
+    image: "/lovable-uploads/a9e43126-35a9-4595-9b3b-492e35ad1177.png",
+    title: "Wolf Tattoo",
   },
   {
     id: 5,
-    image: "https://images.unsplash.com/photo-1607700761058-3a803649bd81?w=800&auto=format&fit=crop",
-    title: "Abstract Art",
+    image: "/lovable-uploads/858e3285-cd01-44f5-8881-8e42de8fb17f.png",
+    title: "Skull with Flames",
   },
   {
     id: 6,
-    image: "https://images.unsplash.com/photo-1547226706-af7e2c9a4389?w=800&auto=format&fit=crop",
-    title: "Neo-Traditional",
+    image: "/lovable-uploads/bfbcdcbb-5c30-4e58-a02a-66f82c8f02b4.png",
+    title: "Viking Skull",
+  },
+  {
+    id: 7,
+    image: "/lovable-uploads/14766e28-8b5c-49bf-a3db-aec43b711d21.png",
+    title: "Sailor Tattoo Linework",
+  },
+  {
+    id: 8,
+    image: "/lovable-uploads/24ef9012-87f2-44f8-8298-cd27f1a61b8c.png",
+    title: "Tattoo Station",
+  },
+  {
+    id: 9,
+    image: "/lovable-uploads/b2f7eafa-7714-4e17-8d31-2ef02144ce52.png",
+    title: "Super Mario Tattoo",
+  },
+  {
+    id: 10,
+    image: "/lovable-uploads/dd879841-0bc8-4fdf-9d32-5319f89de8fb.png",
+    title: "Japanese Yokai",
+  },
+  {
+    id: 11,
+    image: "/lovable-uploads/75c3daa4-0972-4700-b4c1-d380cc68ebb3.png",
+    title: "Japanese Yokai B&W",
+  },
+  {
+    id: 12,
+    image: "/lovable-uploads/2eb95d6f-238e-4256-a01e-1a012f0ece58.png",
+    title: "American Eagle",
+  },
+  {
+    id: 13,
+    image: "/lovable-uploads/de032bc9-b66a-46a4-9fd1-9d5391c44b24.png",
+    title: "Traditional Girl",
+  },
+  {
+    id: 14,
+    image: "/lovable-uploads/d13c83b8-c6f0-471e-91dd-dbd924547cfe.png",
+    title: "Peony Flowers",
+  },
+  {
+    id: 15,
+    image: "/lovable-uploads/ac650ab7-3ac5-43fa-98b3-155f2f7c1396.png",
+    title: "Japanese Geisha",
   }
 ];
 

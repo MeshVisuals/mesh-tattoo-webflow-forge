@@ -9,7 +9,7 @@ const NavBar: React.FC = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > window.innerHeight * 0.8);
+      setIsScrolled(scrollPosition > window.innerHeight * 0.3); // Only show after scrolling past 30% of hero section
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -20,18 +20,19 @@ const NavBar: React.FC = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // If not scrolled yet, don't render the navbar
+  if (!isScrolled) return null;
+
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-black/90 backdrop-blur-md py-4' : 'bg-transparent py-6'}`}>
+    <nav className="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-black/90 backdrop-blur-md py-4">
       <div className="container mx-auto px-4 flex justify-between items-center">
-        {isScrolled && (
-          <div className="flex items-center">
-            <img 
-              src="/lovable-uploads/00e90c25-b8e2-4cc6-9abc-170fcd36c6fb.png" 
-              alt="MeshTattoo Logo" 
-              className="h-10 w-auto"
-            />
-          </div>
-        )}
+        <div className="flex items-center">
+          <img 
+            src="/lovable-uploads/00e90c25-b8e2-4cc6-9abc-170fcd36c6fb.png" 
+            alt="MeshTattoo Logo" 
+            className="h-10 w-auto"
+          />
+        </div>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
@@ -62,9 +63,6 @@ const NavBar: React.FC = () => {
               <path d="M15 8h.01"></path>
               <path d="M11 16c-3 0-6.5-2.5-6.5-6.5C4.5 6 8 4 8 4h8c0 4-3 6-3 6"></path>
             </svg>
-          </a>
-          <a href="https://beacons.ai/meshtattoo" target="_blank" rel="noopener noreferrer" className="text-white hover:text-mesh-orange transition-colors">
-            <span className="font-bold">B</span>
           </a>
         </div>
 
@@ -110,9 +108,6 @@ const NavBar: React.FC = () => {
                   <path d="M15 8h.01"></path>
                   <path d="M11 16c-3 0-6.5-2.5-6.5-6.5C4.5 6 8 4 8 4h8c0 4-3 6-3 6"></path>
                 </svg>
-              </a>
-              <a href="https://beacons.ai/meshtattoo" target="_blank" rel="noopener noreferrer" className="text-white hover:text-mesh-orange transition-colors">
-                <span className="font-bold">B</span>
               </a>
             </div>
           </div>
